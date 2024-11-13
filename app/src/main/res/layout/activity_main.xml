@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lumko.teachme.ui.widget.CustomDuoDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:fitsSystemWindows="false"
+    app:marginFactor="0.5"
+    app:menuAlphaClosed="0.0"
+    app:menuAlphaOpen="1.0">
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="@drawable/gradient_main_bg"-->
+    <!--        android:alpha="1"-->
+    <!--        android:tag="menu">-->
+
+    <RelativeLayout
+        android:id="@+id/slideMenuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/dark_green"
+        android:tag="menu">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/map" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-40dp"
+            app:srcCompat="@drawable/sidemenu" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/slideUserImg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@drawable/circle_white"
+            android:elevation="0.5dp"
+            app:civ_border_overlay="true"
+            app:civ_border_width="0dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/slideUserSettingsBtn"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_alignEnd="@+id/slideUserImg"
+            android:layout_alignBottom="@+id/slideUserImg"
+            android:background="@drawable/circle_white"
+            android:clickable="true"
+            android:elevation="1dp"
+            android:focusable="true"
+            android:foreground="@drawable/ripple_effect_circular"
+            android:padding="5dp"
+            app:srcCompat="@drawable/ic__settings" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/slideUserNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slideUserImg"
+            android:layout_alignStart="@+id/slideUserImg"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_20d"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:id="@+id/slideheaderSeperator"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            android:layout_below="@+id/slideUserNameTv"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/slideMenuRv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/slideLngContainer"
+            android:layout_below="@+id/slideheaderSeperator"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:fadeScrollbars="false"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <LinearLayout
+            android:id="@+id/slideLngContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/slideCountryImg"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="#66000000"
+                app:civ_border_overlay="true"
+                app:civ_border_width="0dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/slideLngTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_8"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_14d"
+                tools:ignore="SpUsage" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_10"
+                app:srcCompat="@drawable/ic_arrow_bottom" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/slideLngContainer"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_toEndOf="@+id/slideLngContainer"
+            android:background="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/slideLogInOutBtn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignTop="@+id/slideLngContainer"
+            android:layout_alignBottom="@+id/slideLngContainer"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_toEndOf="@+id/slideLngContainer"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_14d"
+            app:rippleColor="@color/rippleColor"
+            tools:ignore="SpUsage" />
+
+    </RelativeLayout>
+
+    <!--    </FrameLayout>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:tag="overlay" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/transparent"
+        android:tag="content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:background="@color/pageBg"
+            android:elevation="0dp"
+            android:outlineSpotShadowColor="@color/gray"
+            android:visibility="visible"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mainToolbarTitleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_100"
+                    android:layout_marginEnd="@dimen/margin_100"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/medium"
+                    android:maxLines="1"
+                    android:textColor="@color/text_color5"
+                    android:textSize="@dimen/textsize_15d"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpUsage" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mainToolbarStartImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:background="@drawable/round_view_white_corner20"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/ripple_effect_circular"
+                    android:padding="@dimen/clickable_ic_padding"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mainToolbarEndImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:background="@drawable/round_view_white_corner20"
+                    android:clickable="true"
+                    android:contentDescription=""
+                    android:focusable="true"
+                    android:foreground="@drawable/ripple_effect_circular"
+                    android:padding="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.robinhood.ticker.TickerView
+                    android:id="@+id/mainToolbarEndCircleView"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/circle_red"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_9d"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/mainToolbarEndImg"
+                    app:layout_constraintEnd_toEndOf="@+id/mainToolbarEndImg"
+                    app:layout_constraintHorizontal_bias="0.75"
+                    app:layout_constraintStart_toStartOf="@+id/mainToolbarEndImg"
+                    app:layout_constraintTop_toTopOf="@+id/mainToolbarEndImg"
+                    app:layout_constraintVertical_bias="0.3" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <FrameLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pageBg"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainToolbar" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_bottom_nav_bg"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            app:itemActiveIndicatorStyle="@drawable/ic_cart"
+            app:itemBackground="@drawable/bottom_nav_indicator"
+            app:itemIconTint="@color/bottom_nav_icon"
+            app:itemRippleColor="@color/rippleColor"
+            app:itemTextAppearanceActive="@style/NavTextAppearance"
+            app:itemTextAppearanceInactive="@style/NavTextAppearance"
+            app:itemTextColor="@color/bottom_nav_text"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavKeysContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_app_bar" />
+
+        <View
+            android:id="@+id/bottomNavKeysContainer"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@color/pageBg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/mainHomeContainer"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/gradient_home_icon"
+            android:outlineSpotShadowColor="@color/accent"
+            android:rotation="45"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomNav" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mainHomeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomNav"
+            app:srcCompat="@drawable/ic_home" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mainHomeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:text="@string/home"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_11d"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainHomeContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.lumko.teachme.ui.widget.CustomDuoDrawerLayout>

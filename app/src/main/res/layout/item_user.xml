@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_marginStart="@dimen/margin_16"
+    android:layout_marginTop="@dimen/margin_8"
+    android:layout_marginEnd="@dimen/margin_16"
+    android:layout_marginBottom="@dimen/margin_8"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/ripple_effect_corner_10"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Align the User Image to the left -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/itemUserImg"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- User Name aligned to the right of the Image -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/itemUserNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/textsize_14d"
+            app:layout_constraintTop_toTopOf="@+id/itemUserImg"
+            app:layout_constraintStart_toEndOf="@id/itemUserImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0" />
+
+        <!-- User Role aligned below the User Name -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/itemUserRoleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/text_color3"
+            android:textSize="@dimen/textsize_9d"
+            app:layout_constraintTop_toBottomOf="@id/itemUserNameTv"
+            app:layout_constraintStart_toEndOf="@id/itemUserImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0" />
+
+        <!-- Rating Bar aligned below the User Role -->
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/itemUserRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/itemUserRoleTv"
+            app:layout_constraintStart_toEndOf="@id/itemUserImg"
+            app:srb_drawBorderEnabled="false"
+            app:srb_fillColor="@color/gold"
+            app:srb_isIndicator="true"
+            app:srb_numberOfStars="5"
+            app:srb_rating="0"
+            app:srb_starBackgroundColor="@color/gray81"
+            app:srb_starCornerRadius="15"
+            app:srb_starSize="15dp"
+            app:srb_starsSeparation="0dp"
+            app:srb_stepSize="0.1" />
+
+        <!-- Optional Image Button, for meetings or other actions -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/itemUserMeetingImg"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:padding="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- New Button in the Bottom-Right Corner -->
+
+        <RelativeLayout
+            android:id="@+id/itemUserActionButton"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_8"
+            android:background="@drawable/round_view_accent_corner20"
+            android:backgroundTint="@color/button_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:foreground="@drawable/ripple_effect_corner_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/itemUserActionButtonTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/regular"
+                android:text="Request"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_13d" />
+
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

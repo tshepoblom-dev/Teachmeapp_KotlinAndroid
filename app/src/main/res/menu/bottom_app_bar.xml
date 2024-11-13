@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/dashboard_page"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/dashboard" />
+
+    <item
+        android:id="@+id/wallet_page"
+        android:icon="@drawable/ic_wallet_white"
+        android:title="@string/financial" />
+
+    <item
+        android:enabled="false"
+        android:title="" />
+
+    <item
+        android:id="@+id/providers_page"
+        android:icon="@drawable/ic_providers"
+        android:title="@string/providers" />
+
+
+    <item
+        android:id="@+id/meetings_page"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/meetings" />
+
+</menu>
