@@ -243,7 +243,7 @@
     <string name="account_type">Account Type</string>
     <string name="account_id">Account ID</string>
     <string name="address">Address</string>
-    <string name="identity_scan">Identity Scan</string>
+    <string name="identity_scan">ID Document</string>
     <string name="upload">Upload</string>
     <string name="camera">Camera</string>
     <string name="certificates_and_documents"><![CDATA[Certificates & Documents]]></string>

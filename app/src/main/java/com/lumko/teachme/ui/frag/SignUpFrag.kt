@@ -151,8 +151,8 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
                     // Hide file fields when accountType 1 is selected
                     qualificationField.visibility = View.GONE
                     cvField.visibility = View.GONE
-                    idDocumentField.visibility = View.GONE
-                    proofOfAddressField.visibility = View.GONE
+                    idDocumentField.visibility = View.VISIBLE
+                    proofOfAddressField.visibility = View.VISIBLE
                     bankAccountLetterField.visibility = View.GONE
 
                     mBinding.qualificationTv.visibility = View.GONE
