@@ -73,6 +73,12 @@
     <string name="best_selling">أفضل مبيعات</string>
     <string name="discounted_classes">الدورات المخفضة</string>
     <string name="free_classes">دورات مجانية</string>
+ <string name="bank_name">Name of Bank</string>
+ <string name="bank_account">Account Number</string>
+ <string name="branch_code">Branch Code</string>
+   <string name="choose_your_cv_file">Please select a file for your CV</string>
+   <string name="choose_your_proof_of_address_file">Please select a file for your proof of addres</string>
+   <string name="choose_your_bank_confirmation_file">Please upload bank account confirmation letter</string>
     <string name="save">يحفظ</string>
     <string name="email">بريد الالكتروني</string>
     <string name="name">اسم</string>

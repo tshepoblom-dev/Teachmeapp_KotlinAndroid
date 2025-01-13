@@ -245,6 +245,12 @@
     <string name="address">Address</string>
     <string name="identity_scan">ID Document</string>
     <string name="upload">Upload</string>
+    <string name="choose_your_cv_file">Please select a file for your CV</string>
+    <string name="choose_your_proof_of_address_file">Please select a file for your proof of addres</string>
+    <string name="choose_your_bank_confirmation_file">Please upload bank account confirmation letter</string>
+    <string name="bank_name">Name of Bank</string>
+    <string name="bank_account">Account Number</string>
+    <string name="branch_code">Branch Code</string>
     <string name="camera">Camera</string>
     <string name="certificates_and_documents"><![CDATA[Certificates & Documents]]></string>
     <string name="hi">Hi</string>

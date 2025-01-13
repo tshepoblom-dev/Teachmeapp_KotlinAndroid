@@ -59,7 +59,7 @@ class SettingsFinancialPresenterImpl(private val frag: SettingsFinancialFrag) :
 
         })
     }
-
+/*
     override fun uploadFinancialSettingsFiles(identityFile: File, certFile: File) {
         val identityFileBody = identityFile.asRequestBody()
         val identityFilePart =
@@ -88,4 +88,26 @@ class SettingsFinancialPresenterImpl(private val frag: SettingsFinancialFrag) :
 
             })
     }
+*/
+   override fun uploadFinancialSettingsFiles(vararg files: MultipartBody.Part) {
+
+    ApiService.apiClient!!.uploadFinancialSettings(files.toList())
+            .enqueue(object : CustomCallback<BaseResponse> {
+                override fun onStateChanged(): RetryListener? {
+                    return RetryListener {
+                        uploadFinancialSettingsFiles(*files)
+                    }
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse>,
+                    response: Response<BaseResponse>
+                ) {
+                    if (response.body() != null) {
+                        frag.onFilesSaved(response.body()!!)
+                    }
+                }
+            })
+    }
+
 }

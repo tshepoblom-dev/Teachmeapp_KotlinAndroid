@@ -124,7 +124,7 @@ class SettingsFrag : Fragment(), View.OnClickListener, ViewPager.OnPageChangeLis
         mBottomSheetBehavior.isHideable = true
         mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
-
+/*
     private fun initUserInfo() {
         val selectFinancialTab = arguments != null && requireArguments().getBoolean(App.FINANCIAL)
         if (selectFinancialTab) {
@@ -139,7 +139,27 @@ class SettingsFrag : Fragment(), View.OnClickListener, ViewPager.OnPageChangeLis
         mBinding.settingsUserNameTv.text = user.name
         mBinding.settingsUserTypeTv.text =
             if (user.userGroup == null) user.roleName else user.userGroup!!.name
+    }*/
+    private fun initUserInfo() {
+        // Check if the financial tab should be selected
+        val selectFinancialTab = arguments != null && requireArguments().getBoolean(App.FINANCIAL)
+        if (selectFinancialTab) {
+            val pager = mBinding.settingsUserViewPager
+            pager.setCurrentItem(2, true)
+        }
+
+        // Safely access App.loggedInUser
+        val user = App.loggedInUser ?: return // Exit the method if user is null
+
+        // Load user avatar if available
+        if (user.avatar != null) {
+            Glide.with(requireContext()).load(user.avatar).into(mBinding.meetingDetailsUserImg)
+        }
+        mBinding.settingsUserNameTv.text = user.name
+        mBinding.settingsUserTypeTv.text =
+            if (user.userGroup == null) user.roleName else user.userGroup!!.name
     }
+
 
     private fun initTabs() {
         val tabLayout = mBinding.ssettingsUserTabLayout
@@ -149,7 +169,7 @@ class SettingsFrag : Fragment(), View.OnClickListener, ViewPager.OnPageChangeLis
         adapter.add(SettingsGeneralFrag(), getString(R.string.general))
         adapter.add(SettingsSecurityFrag(), getString(R.string.security))
         adapter.add(SettingsFinancialFrag(), getString(R.string.financial))
-        adapter.add(SettingsLocalizationFrag(), getString(R.string.localization))
+     //   adapter.add(SettingsLocalizationFrag(), getString(R.string.localization))
 
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(this)

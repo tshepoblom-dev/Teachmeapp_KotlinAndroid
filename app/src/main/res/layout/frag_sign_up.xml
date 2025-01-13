@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pageBg">
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -148,7 +155,7 @@
             app:layout_constraintTop_toBottomOf="@id/signupImgContainer"
             tools:ignore="KeyboardInaccessibleWidget" />
 
-
+<!--
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/signUpPasswordEdtx"
             android:layout_width="0dp"
@@ -190,6 +197,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signUpPasswordEdtx"
             tools:ignore="KeyboardInaccessibleWidget" />
+            -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpPasswordEdtx"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edtx_height_size"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@drawable/round_view_white_corner20"
+            app:startIconDrawable="@drawable/ic_password"
+            app:endIconMode="password_toggle"
+            android:drawablePadding="@dimen/padding_16"
+            android:fontFamily="@font/regular"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingEnd="2dp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/gull_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signUpEmailPhoneEdtx"
+            tools:ignore="KeyboardInaccessibleWidget" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signUpPasswordtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signUpRetypePasswordEdtx"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edtx_height_size"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@drawable/round_view_white_corner20"
+            app:startIconDrawable="@drawable/ic_password"
+            app:endIconMode="password_toggle"
+            android:drawablePadding="@dimen/margin_16"
+            android:fontFamily="@font/regular"
+            android:hint="@string/retype_password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingEnd="2dp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/gull_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signUpPasswordEdtx"
+            tools:ignore="KeyboardInaccessibleWidget" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signUpRetypePasswordtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
               <RadioGroup
             android:id="@+id/radioGroupAccountType"
@@ -590,6 +653,29 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>
 
+    <!-- Fullscreen overlay ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?android:attr/progressBarStyleLarge" />
+
+    <!-- Optional background overlay to dim content -->
+    <View
+        android:id="@+id/progressOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

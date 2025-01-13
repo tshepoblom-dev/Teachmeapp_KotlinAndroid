@@ -33,10 +33,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:fontFamily="@font/regular"
-            android:text="@string/account_type"
+            android:text="@string/bank_name"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+            android:textSize="@dimen/textsize_16d" />
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/settingsFinancialBankEdtx"
+            android:hint="@string/bank_account"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edtx_height_size"
+            android:layout_marginTop="@dimen/margin_4"
+            android:background="@drawable/round_view_white_with_border_corner20"
+            android:fontFamily="@font/regular"
+            android:inputType="text"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingEnd="2dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/textsize_16d" />
+
+<!--
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -61,18 +76,20 @@
                 app:srcCompat="@drawable/ic_arrow_bottom_gray" />
 
         </FrameLayout>
+        -->
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             android:fontFamily="@font/regular"
-            android:text="@string/iban"
+            android:text="@string/bank_account"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+            android:textSize="@dimen/textsize_16d" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/settingsFinancialIBANEdtx"
+            android:hint="@string/iban"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edtx_height_size"
             android:layout_marginTop="@dimen/margin_4"
@@ -82,20 +99,21 @@
             android:paddingStart="@dimen/padding_16"
             android:paddingEnd="2dp"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/textsize_15d" />
+            android:textSize="@dimen/textsize_16d" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             android:fontFamily="@font/regular"
-            android:text="@string/account_id"
+            android:text="@string/branch_code"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+            android:textSize="@dimen/textsize_16d" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/settingsFinancialAccountIDEdtx"
             android:layout_width="match_parent"
+            android:hint="@string/id_document"
             android:layout_height="@dimen/edtx_height_size"
             android:layout_marginTop="@dimen/margin_4"
             android:background="@drawable/round_view_white_with_border_corner20"
@@ -104,24 +122,51 @@
             android:paddingStart="@dimen/padding_16"
             android:paddingEnd="2dp"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/textsize_15d" />
+            android:textSize="@dimen/textsize_16d" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/regular"
+            android:text="@string/address"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_16d" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/settingsFinancialAddressEdtx"
+            android:hint="@string/address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edtx_height_size"
+            android:layout_marginTop="@dimen/margin_4"
+            android:background="@drawable/round_view_white_with_border_corner20"
+            android:fontFamily="@font/regular"
+            android:inputType="textMultiLine"
+            android:maxLines="8"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingEnd="2dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/textsize_16d" />
+
+<!--ID DOCUMENT-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/settingsFinancialIdLabel"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
             android:fontFamily="@font/regular"
             android:text="@string/identity_scan"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+            android:textSize="@dimen/textsize_16d" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/settingsFinancialIdGrp"
             android:layout_marginTop="@dimen/margin_4">
-<!--
+
             <RelativeLayout
                 android:id="@+id/settingsFinancialCameraIdBtn"
                 android:layout_width="0dp"
@@ -154,14 +199,15 @@
                     android:fontFamily="@font/regular"
                     android:text="@string/camera"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_13d" />
+                    android:textSize="@dimen/textsize_16d" />
 
             </RelativeLayout>
--->
+
             <RelativeLayout
                 android:id="@+id/settingsFinancialUploadIdBtn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/margin_8"
                 android:background="@drawable/round_view_accent_corner20"
                 android:backgroundTint="@color/button_selector"
                 android:clickable="true"
@@ -170,7 +216,7 @@
                 android:foreground="@drawable/ripple_effect_corner_20"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraIdBtn"
                 app:layout_constraintTop_toTopOf="parent">
 
 
@@ -192,12 +238,13 @@
                     android:fontFamily="@font/regular"
                     android:text="@string/upload"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textsize_13d" />
+                    android:textSize="@dimen/textsize_16d" />
 
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
+
+
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -206,59 +253,338 @@
             android:layout_marginTop="@dimen/margin_8"
             android:fontFamily="@font/regular"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
-            -->
+            android:textSize="@dimen/textsize_16d" />
+        <!--end ID_DOCUMENT-->
 
+
+        <!--PROOF_OF_ADDRESS-->
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
+            android:id="@+id/settingsFinancialPoaLabel"
             android:fontFamily="@font/regular"
-            android:text="@string/qualification"
+            android:text="@string/proof_of_address"
             android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+            android:textSize="@dimen/textsize_16d" />
 
-        <RelativeLayout
-            android:id="@+id/settingsFinancialUploadCertBtn"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="@drawable/round_view_accent_corner20"
-            android:backgroundTint="@color/button_selector"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:foreground="@drawable/ripple_effect_corner_20"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraBtn"
-            app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/settingsFinancialPoaGrp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/settingsFinancialUploadCertCameraImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:id="@+id/settingsFinancialCameraPOABtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
                 android:layout_marginEnd="@dimen/margin_8"
-                android:layout_centerInParent="true"
-                android:layout_toStartOf="@+id/settingsFinancialUploadCertTv"
-                app:srcCompat="@drawable/ic_upload" />
+                android:background="@drawable/round_view_accent_corner20"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/settingsFinancialUploadPOABtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/settingsFinancialUploadCertTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/regular"
-                android:includeFontPadding="false"
-                android:text="@string/upload"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textsize_13d" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialCameraPOATv"
+                    app:srcCompat="@drawable/ic_camera_white" />
 
-        </RelativeLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialCameraPOATv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/camera"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialUploadPOABtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:backgroundTint="@color/button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraPOABtn"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingsFinancialUploadCameraPOAImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialUploadPOATv"
+                    app:srcCompat="@drawable/ic_upload" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialUploadPOATv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/upload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/settingsFinancialPOAFileTv"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_8"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_11d" />
+
+        <!-- END PROOF OF ADDRESS -->
+
+        <!--BANK ACCOUNT COCNFIRMATION-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:id="@+id/settingsFinancialBankLabel"
+            android:fontFamily="@font/regular"
+            android:text="@string/bank_account_letter"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_16d" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settingsFinancialBankGrp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4">
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialCameraBankBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/settingsFinancialUploadBankBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialCameraBankTv"
+                    app:srcCompat="@drawable/ic_camera_white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialCameraBankTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/camera"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialUploadBankBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:backgroundTint="@color/button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraBankBtn"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingsFinancialUploadCameraBankImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialUploadBankTv"
+                    app:srcCompat="@drawable/ic_upload" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialUploadBankTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/upload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settingsFinancialBankFileTv"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_8"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_11d" />
+        <!-- END BANK ACCOUNT CONFIRMATION -->
+
+        <!--CERTIFICATE/DEGREE/DIPLOMA-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/settingsFinancialCertsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/regular"
+            android:text="@string/certificates_and_documents"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_11d" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settingsFinancialCertGrp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4">
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialCameraCertBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/settingsFinancialUploadCertBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialCameraCertTv"
+                    app:srcCompat="@drawable/ic_camera_white" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialCameraCertTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/camera"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialUploadCertBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:backgroundTint="@color/button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraCertBtn"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingsFinancialUploadCameraCertImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialUploadCertTv"
+                    app:srcCompat="@drawable/ic_upload" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialUploadCertTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/upload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settingsFinancialCertFileTv"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_8"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gull_gray"
+            android:textSize="@dimen/textsize_11d" />
+        <!-- END BANK ACCOUNT CONFIRMATION -->
+
+
+        <!--CERTIFICATE/DEGREE/DIPLOMA-->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/settingsFinancialCvLabel"
             android:layout_marginTop="@dimen/margin_10"
             android:fontFamily="@font/regular"
             android:text="@string/cv"
@@ -266,157 +592,316 @@
             android:textSize="@dimen/textsize_11d" />
 
 
-        <RelativeLayout
-            android:id="@+id/settingsFinancialUploadCvBtn"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settingsFinancialCvGrp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="@drawable/round_view_accent_corner20"
-            android:backgroundTint="@color/button_selector"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:foreground="@drawable/ripple_effect_corner_20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/settingsFinancialUploadCvImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:id="@+id/settingsFinancialCameraCVBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
                 android:layout_marginEnd="@dimen/margin_8"
-                android:layout_centerInParent="true"
-                android:layout_toStartOf="@+id/settingsFinancialUploadCvTv"
-                app:srcCompat="@drawable/ic_upload" />
+                android:background="@drawable/round_view_accent_corner20"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/settingsFinancialUploadCVBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/settingsFinancialUploadCvTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/regular"
-                android:includeFontPadding="false"
-                android:text="@string/upload"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textsize_13d" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialCameraCVTv"
+                    app:srcCompat="@drawable/ic_camera_white" />
 
-        </RelativeLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialCameraCVTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/camera"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/settingsFinancialUploadCVBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/round_view_accent_corner20"
+                android:backgroundTint="@color/button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:foreground="@drawable/ripple_effect_corner_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraCVBtn"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/settingsFinancialUploadCameraCVImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_toStartOf="@+id/settingsFinancialUploadCVTv"
+                    app:srcCompat="@drawable/ic_upload" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialUploadCVTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/upload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_16d" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
+            android:id="@+id/settingsFinancialCVFileTv"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_8"
             android:fontFamily="@font/regular"
-            android:text="@string/proof_of_address"
             android:textColor="@color/gull_gray"
             android:textSize="@dimen/textsize_11d" />
+        <!-- END CV-->
+
+        <!--
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/certificates_and_documents"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
+
+                <RelativeLayout
+                    android:id="@+id/settingsFinancialUploadCertBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:background="@drawable/round_view_accent_corner20"
+                    android:backgroundTint="@color/button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:foreground="@drawable/ripple_effect_corner_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/settingsFinancialCameraBtn"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/settingsFinancialUploadCertCameraImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_centerInParent="true"
+                        android:layout_toStartOf="@+id/settingsFinancialUploadCertTv"
+                        app:srcCompat="@drawable/ic_upload" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/settingsFinancialUploadCertTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textsize_13d" />
+
+                </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/settingsFinancialUploadPoaBtn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="@drawable/round_view_accent_corner20"
-            android:backgroundTint="@color/button_selector"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:foreground="@drawable/ripple_effect_corner_20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/settingsFinancialCertFileTv"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:visibility="gone"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/settingsFinancialUploadPoaImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:layout_centerInParent="true"
-                android:layout_toStartOf="@+id/settingsFinancialUploadPoaTv"
-                app:srcCompat="@drawable/ic_upload" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/cv"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/settingsFinancialUploadPoaTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/regular"
-                android:includeFontPadding="false"
-                android:text="@string/upload"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textsize_13d" />
+                <RelativeLayout
+                    android:id="@+id/settingsFinancialUploadCVBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:background="@drawable/round_view_accent_corner20"
+                    android:backgroundTint="@color/button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:foreground="@drawable/ripple_effect_corner_20">
 
-        </RelativeLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/settingsFinancialUploadCVImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_toStartOf="@+id/settingsFinancialUploadCVTv"
+                        app:srcCompat="@drawable/ic_upload" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
-            android:fontFamily="@font/regular"
-            android:text="@string/bank_account_letter"
-            android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/settingsFinancialUploadCVTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textsize_13d" />
+                </RelativeLayout>
 
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialCVFileTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:visibility="gone"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
 
-        <RelativeLayout
-            android:id="@+id/settingsFinancialUploadBankBtn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="@drawable/round_view_accent_corner20"
-            android:backgroundTint="@color/button_selector"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:foreground="@drawable/ripple_effect_corner_20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/proof_of_address"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/settingsFinancialUploadBankImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:layout_centerInParent="true"
-                android:layout_toStartOf="@+id/settingsFinancialUploadBankTv"
-                app:srcCompat="@drawable/ic_upload" />
+                <RelativeLayout
+                    android:id="@+id/settingsFinancialUploadProofAddressBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:background="@drawable/round_view_accent_corner20"
+                    android:backgroundTint="@color/button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:foreground="@drawable/ripple_effect_corner_20">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/settingsFinancialUploadBankTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/regular"
-                android:includeFontPadding="false"
-                android:text="@string/upload"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textsize_13d" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/settingsFinancialUploadProofAddressImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_toStartOf="@+id/settingsFinancialUploadProofAddressTv"
+                        app:srcCompat="@drawable/ic_upload" />
 
-        </RelativeLayout>
-     <!--
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
-            android:fontFamily="@font/regular"
-            android:text="@string/address"
-            android:textColor="@color/gull_gray"
-            android:textSize="@dimen/textsize_11d" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/settingsFinancialUploadProofAddressTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textsize_13d" />
+                </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/settingsFinancialAddressEdtx"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edtx_height_size"
-            android:layout_marginTop="@dimen/margin_4"
-            android:background="@drawable/round_view_white_with_border_corner20"
-            android:fontFamily="@font/regular"
-            android:inputType="textMultiLine"
-            android:maxLines="8"
-            android:paddingStart="@dimen/padding_16"
-            android:paddingEnd="2dp"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/textsize_15d" /> -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialProofAddressFileTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:visibility="gone"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/bank_account_letter"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" />
+
+                <RelativeLayout
+                    android:id="@+id/settingsFinancialUploadBankLetterBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:background="@drawable/round_view_accent_corner20"
+                    android:backgroundTint="@color/button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:foreground="@drawable/ripple_effect_corner_20">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/settingsFinancialUploadBankLetterImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_toStartOf="@+id/settingsFinancialUploadBankLetterTv"
+                        app:srcCompat="@drawable/ic_upload" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/settingsFinancialUploadBankLetterTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/upload"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textsize_13d" />
+                </RelativeLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/settingsFinancialBankLetterFileTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:visibility="gone"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/gull_gray"
+                    android:textSize="@dimen/textsize_11d" /> -->
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

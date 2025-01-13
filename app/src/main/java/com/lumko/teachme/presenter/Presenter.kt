@@ -5,6 +5,7 @@ import com.lumko.teachme.manager.net.OnDownloadProgressListener
 import com.lumko.teachme.model.*
 import com.lumko.teachme.ui.frag.UsersOrganizationsFrag
 import okhttp3.MultipartBody
+import retrofit2.http.Multipart
 import java.io.File
 
 class Presenter {
@@ -23,6 +24,9 @@ class Presenter {
         fun signUp(signUp: MobileSignUp)
         fun signUp(signUp: EmailSignUp, multipart: MutableList<MultipartBody.Part>)
         fun signUp(signUp: MobileSignUp, multipart: MutableList<MultipartBody.Part>)
+        //fun signUpFiles(vararg multipart: MultipartBody.Part)
+        fun signUpFiles(userId: Int, multipart: List<MultipartBody.Part>)
+      //  fun signUp(signUp: EmailSignUp, vararg files: MultipartBody.Part)
     }
 
     interface SplashScreenPresenter {
@@ -316,7 +320,9 @@ class Presenter {
     interface SettingsFinancialPresenter {
         fun uploadFinancialSettings(financialSettings: FinancialSettings)
         fun getAccountTypes()
-        fun uploadFinancialSettingsFiles(identityFile: File, certFile: File)
+        //fun uploadFinancialSettingsFiles(identityFile: File, certFile: File)
+        fun uploadFinancialSettingsFiles(vararg files: MultipartBody.Part)
+
     }
 
     interface CourseChapterItemPresenter {

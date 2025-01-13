@@ -14,19 +14,37 @@ interface ApiClient {
     @GET("config")
     fun getAppConfig(): Call<AppConfig>
 
-    @Multipart
-    //@Headers("Content-Type: application/json")
-    @POST("register/step/1")
-    fun signUpMethod(@Part("signUp") signUp: RequestBody,
-                     @Part files: MutableList<MultipartBody.Part>
-    ): Call<Data<User>>
-
- /*   @Multipart
+    /*@Multipart
     @Headers("Content-Type: application/json")
     @POST("register/step/1")
     fun signUpMethod(@Part("signUp") signUp: RequestBody,
-                     @Part files: List<MultipartBody.Part>
+                     @Part vararg files: MultipartBody.Part
     ): Call<Data<User>>*/
+
+
+    //@Headers("Content-Type: application/json")
+    @Multipart
+    @Headers("Content-Type: multipart/form-data")
+    @POST("register/step/1")
+    fun signUpMethod(@Part("signUp") signUp: RequestBody,
+                     @Part files: List<MultipartBody.Part>
+    ): Call<Data<User>>
+
+    @Multipart
+    @POST("register/upload_files")
+    //fun signUpMethodFiles(@Part vararg files: MultipartBody.Part): Call<Data<User>>
+    fun signUpMethodFiles(@Part("idDocument") id: MultipartBody.Part,
+                          @Part("qualification") cert: MultipartBody.Part,
+                          @Part("cv") cv: MultipartBody.Part,
+                          @Part("proofOfAddress") poa: MultipartBody.Part,
+                          @Part("bankAccountLetter") bank: MultipartBody.Part): Call<Data<Response>>
+
+    @Multipart
+    ///@Headers("Content-Type: multipart/form-data")
+    @POST("upload-files/{userId}")
+    fun signUpMethodFiles(
+        @Part("userId") userId: String,
+        @Part parts: List<MultipartBody.Part>): Call<BaseResponse>
 
     @Headers("Content-Type: application/json")
     @POST("register/step/1")
@@ -141,6 +159,23 @@ interface ApiClient {
         @Part identityFile: MultipartBody.Part,
         @Part scanFile: MultipartBody.Part
     ): Call<BaseResponse>
+
+    //31dec2024
+    @Multipart
+    @POST("panel/profile-setting/images")
+    fun uploadFinancialSettings(
+        @Part files: List<MultipartBody.Part>
+    ): Call<BaseResponse>
+
+   /* fun uploadFinancialSettings(
+        @Part identityFile: MultipartBody.Part,
+        @Part scanFile: MultipartBody.Part,
+        @Part cvFile: MultipartBody.Part,
+        @Part poaFile: MultipartBody.Part,
+        @Part bankFile: MultipartBody.Part
+    ): Call<BaseResponse>
+    */
+
 
     @Headers("Content-Type: application/json")
     @POST("instructor/meetings/{meeting_id}/finish")

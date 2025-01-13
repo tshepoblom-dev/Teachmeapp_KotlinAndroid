@@ -8,7 +8,7 @@ object BuildVars {
     var LOGS_ENABLED = true
     const val API_KEY = "1234"
     const val BASE_URL = "https://teachmeapp.africa/api/development/"
-    //const val BASE_URL = "https://93f1-41-116-213-185.ngrok-free.app/api/development/"
+    //const val BASE_URL = "https://213d-41-122-194-175.ngrok-free.app/api/development/"
 
     class DefaultLang(val value: String) {
         companion object {
@@ -19,7 +19,7 @@ object BuildVars {
 
     val LNG_FLAG = object : HashMap<String, Int>() {
         init {
-            put("ENGLISH", R.drawable.flag_united_kingdom)
+            put("ENGLISH", R.drawable.flag_south_africa)
             put("PERSIAN", R.drawable.flag_iran)
             put("ARABIC", R.drawable.flag_iraq)
             put("FRENCH", R.drawable.flag_france)

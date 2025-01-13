@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
@@ -279,11 +280,27 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
     fun initUserInfo() {
         val user = App.loggedInUser
 
-        mBinding.slideCountryImg.setImageResource(
+       /* mBinding.slideCountryImg.setImageResource(
             BuildVars.LNG_FLAG[BaseActivity.language!!.name.uppercase(
                 Locale.ENGLISH
             )]!!
-        )
+        )*/
+
+        // Ensure mBinding is not null
+        mBinding?.let { binding ->
+            // Ensure language is not null
+            val languageName = BaseActivity.language?.name?.uppercase(Locale.ENGLISH)
+
+            if (languageName != null && BuildVars.LNG_FLAG.containsKey(languageName)) {
+                // Safely set the image resource
+                binding.slideCountryImg.setImageResource(BuildVars.LNG_FLAG[languageName] ?: R.drawable.flag_south_africa)
+            } else {
+                Log.e("MainActivity", "Language name is null or flag not found in LNG_FLAG map")
+                // Optionally, set a default image resource in case of an error
+                binding.slideCountryImg.setImageResource(R.drawable.flag_south_africa)
+            }
+        } ?: Log.e("MainActivity", "mBinding is null")
+
 
         if (user != null) {
             mBinding.slideLogInOutBtn.text = getString(R.string.logout)
@@ -511,7 +528,11 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
 
     private fun getUserPrimaryColor(): Int {
         var primaryColor = R.color.primary_status_bar_color;
-        if(App.loggedInUser!!.isInstructor()){
+        val loggedInUser = App.loggedInUser
+        if (loggedInUser?.isInstructor() == true) {
+       // if(App.loggedInUser!!.isInstructor()){
+            /*if(App.loggedInUser!!.userGroup != null){
+
             when(App.loggedInUser!!.userGroup!!.name){
                 "Basic" -> {
                     // Level 1 Instructor (Darker Green)
@@ -526,6 +547,18 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
                     primaryColor = R.color.instructor_level3_primary
                 }
             }
+            }*/
+
+                val userGroupName = loggedInUser.userGroup?.name
+
+                // Map user group names to colors
+                primaryColor = when (userGroupName) {
+                    "Basic" -> R.color.instructor_level1_primary // Level 1 Instructor (Darker Green)
+                    "Advanced" -> R.color.instructor_level2_primary // Level 2 Instructor (Silver)
+                    "Expert" -> R.color.instructor_level3_primary // Level 3 Instructor (Gold)
+                    else -> R.color.primary_status_bar_color // Default if no match
+                }
+
         }
         return primaryColor
     }
@@ -533,27 +566,103 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
         var primaryColor = R.color.primary_status_bar_color;
         var secondaryColor = R.color.dark_green;
 
-        if(App.loggedInUser!!.isInstructor()){
-            when(App.loggedInUser!!.userGroup!!.name){
+     /*   if(App.loggedInUser!!.isInstructor()){
+            if(App.loggedInUser!!.userGroup != null) {
+                when (App.loggedInUser!!.userGroup!!.name) {
+                    "Basic" -> {
+                        // Level 1 Instructor (Darker Green)
+                        primaryColor = R.color.instructor_level1_primary
+                        secondaryColor = R.color.instructor_level1_secondary
+                    }
+
+                    "Advanced" -> {
+                        // Level 2 Instructor (Silver)
+                        primaryColor = R.color.instructor_level2_primary
+                        secondaryColor = R.color.instructor_level2_secondary
+                    }
+
+                    "Expert" -> {
+                        // Level 3 Instructor (Gold)
+                        primaryColor = R.color.instructor_level3_primary
+                        secondaryColor = R.color.instructor_level3_secondary
+                    }
+                }
+            }
+        }*/
+        // Safely access the logged-in user and check if they are an instructor
+        val loggedInUser = App.loggedInUser
+        if (loggedInUser?.isInstructor() == true) {
+            // Safely access userGroup
+            val userGroupName = loggedInUser.userGroup?.name
+
+            // Map user group names to gradient colors
+            when (userGroupName) {
                 "Basic" -> {
-                    // Level 1 Instructor (Darker Green)
-                    primaryColor = R.color.instructor_level1_primary
+                    primaryColor = R.color.instructor_level1_primary // Level 1 Instructor (Darker Green)
                     secondaryColor = R.color.instructor_level1_secondary
                 }
                 "Advanced" -> {
-                    // Level 2 Instructor (Silver)
-                    primaryColor = R.color.instructor_level2_primary
+                    primaryColor = R.color.instructor_level2_primary // Level 2 Instructor (Silver)
                     secondaryColor = R.color.instructor_level2_secondary
                 }
                 "Expert" -> {
-                    // Level 3 Instructor (Gold)
-                    primaryColor = R.color.instructor_level3_primary
+                    primaryColor = R.color.instructor_level3_primary // Level 3 Instructor (Gold)
                     secondaryColor = R.color.instructor_level3_secondary
                 }
             }
         }
+
         return Pair(primaryColor, secondaryColor)
     }
+    fun applyUserColorScheme() {
+        // Default colors
+        var primaryColor = R.color.primary_status_bar_color
+        var secondaryColor = R.color.bottom_nav_start_color
+        var accentColor = R.color.toolbar_drawer_open_color
+        var backgroundColor = R.color.home_icon_bg_gradient
+
+        // Check if the user is an instructor
+        val loggedInUser = App.loggedInUser
+        if (loggedInUser != null && loggedInUser.isInstructor()) {
+            val userGroup = loggedInUser.userGroup
+            if (userGroup != null) {
+                when (userGroup.name) {
+                    "Basic" -> {
+                        primaryColor = R.color.instructor_level1_primary
+                        secondaryColor = R.color.instructor_level1_secondary
+                        accentColor = R.color.instructor_level1_accent
+                        backgroundColor = R.color.instructor_level1_background
+                    }
+                    "Advanced" -> {
+                        primaryColor = R.color.instructor_level2_primary
+                        secondaryColor = R.color.instructor_level2_secondary
+                        accentColor = R.color.instructor_level2_accent
+                        backgroundColor = R.color.instructor_level2_background
+                    }
+                    "Expert" -> {
+                        primaryColor = R.color.instructor_level3_primary
+                        secondaryColor = R.color.instructor_level3_secondary
+                        accentColor = R.color.instructor_level3_accent
+                        backgroundColor = R.color.instructor_level3_background
+                    }
+                }
+            }
+        }
+
+        // Blend colors
+        val blendedPrimarySecondary = ColorUtils.blendARGB(
+            ContextCompat.getColor(this, primaryColor),
+            ContextCompat.getColor(this, secondaryColor),
+            0.5f
+        )
+
+        // Apply colors
+        window.statusBarColor = blendedPrimarySecondary
+        mBinding.bottomNav.setBackgroundColor(blendedPrimarySecondary)
+        mBinding.slideMenuContainer.setBackgroundColor(ContextCompat.getColor(this, backgroundColor))
+        mBinding.slideLogInOutBtn.setTextColor(ContextCompat.getColor(this, accentColor))
+    }
+/*
     fun applyUserColorScheme() {
         // Assign default colors for normal users
         var primaryColor = R.color.primary_status_bar_color
@@ -563,28 +672,32 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
 
         // Check if the user is an instructor and apply specific color scheme based on tier
         if (App.loggedInUser!!.isInstructor()) {
-            when (App.loggedInUser!!.userGroup!!.name) {
-                "Basic" -> {
-                    // Level 1 Instructor (Darker Green)
-                    primaryColor = R.color.instructor_level1_primary
-                    secondaryColor = R.color.instructor_level1_secondary
-                     accentColor = R.color.instructor_level1_accent
-                    backgroundColor = R.color.instructor_level1_background
+            if(App.loggedInUser!!.userGroup != null){
+
+                when (App.loggedInUser!!.userGroup!!.name) {
+                    "Basic" -> {
+                        // Level 1 Instructor (Darker Green)
+                        primaryColor = R.color.instructor_level1_primary
+                        secondaryColor = R.color.instructor_level1_secondary
+                         accentColor = R.color.instructor_level1_accent
+                        backgroundColor = R.color.instructor_level1_background
+                    }
+                    "Advanced" -> {
+                        // Level 2 Instructor (Silver)
+                        primaryColor = R.color.instructor_level2_primary
+                        secondaryColor = R.color.instructor_level2_secondary
+                         accentColor = R.color.instructor_level2_accent
+                        backgroundColor = R.color.instructor_level2_background
+                    }
+                    "Expert" -> {
+                        // Level 3 Instructor (Gold)
+                        primaryColor = R.color.instructor_level3_primary
+                        secondaryColor = R.color.instructor_level3_secondary
+                        accentColor = R.color.instructor_level3_accent
+                        backgroundColor = R.color.instructor_level3_background
+                    }
                 }
-                "Advanced" -> {
-                    // Level 2 Instructor (Silver)
-                    primaryColor = R.color.instructor_level2_primary
-                    secondaryColor = R.color.instructor_level2_secondary
-                     accentColor = R.color.instructor_level2_accent
-                    backgroundColor = R.color.instructor_level2_background
-                }
-                "Expert" -> {
-                    // Level 3 Instructor (Gold)
-                    primaryColor = R.color.instructor_level3_primary
-                    secondaryColor = R.color.instructor_level3_secondary
-                    accentColor = R.color.instructor_level3_accent
-                    backgroundColor = R.color.instructor_level3_background
-                }
+
             }
         }
 
@@ -595,7 +708,7 @@ class MainActivity : BaseActivity(), View.OnClickListener, OnItemClickListener,
 
         // Apply additional UI element color changes as needed
     }
-
+*/
     override fun onDrawerStateChanged(newState: Int) {
     }
 

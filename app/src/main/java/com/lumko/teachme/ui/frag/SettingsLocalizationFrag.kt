@@ -3,11 +3,13 @@ package com.lumko.teachme.ui.frag
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
+import android.widget.Toast
 import com.google.gson.Gson
 import com.lumko.teachme.R
 import com.lumko.teachme.databinding.FragSettingsLocalizationBinding
@@ -64,7 +66,15 @@ class SettingsLocalizationFrag : NetworkObserverFragment(), SettingsFrag.SaveCal
     }
 
     private fun init() {
-        val user = App.loggedInUser!!
+        //val user = App.loggedInUser!!
+        val user = App.loggedInUser
+        if (user == null) {
+            Log.e("SettingsLocalizatioFrag", "Logged-in user is null")
+            // Handle the null case: show an error, redirect, or stop initialization
+            Toast.makeText(requireContext(), "User data is unavailable. Please log in again.", Toast.LENGTH_LONG).show()
+            return
+        }
+
 
         mPresenter = SettingsLocalizationPresenterImpl(this)
         mPresenter.getTimeZones()
@@ -74,7 +84,7 @@ class SettingsLocalizationFrag : NetworkObserverFragment(), SettingsFrag.SaveCal
         mBinding.settingsLocalizationProvinceSpinner.onItemSelectedListener = this
         mBinding.settingsLocalizationCitySpinner.onItemSelectedListener = this
         mBinding.settingsLocalizationDistrictSpinner.onItemSelectedListener = this
-
+/*
         user.countryId?.let {
             mPresenter.getProvinces(user.countryId!!)
         }
@@ -86,7 +96,18 @@ class SettingsLocalizationFrag : NetworkObserverFragment(), SettingsFrag.SaveCal
         user.cityId?.let {
             mPresenter.getDistricts(user.cityId!!)
         }
+*/
+        user.countryId?.let {
+            mPresenter.getProvinces(it)
+        }
 
+        user.provinceId?.let {
+            mPresenter.getCities(it)
+        }
+
+        user.cityId?.let {
+            mPresenter.getDistricts(it)
+        }
         mBinding.settingsLocalizationAddressTv.setText(user.address)
         mBinding.settingsLocalizationAddressTv.addTextChangedListener(this)
     }

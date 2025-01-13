@@ -20,6 +20,12 @@
     <string name="sign_in_desc">Inicie sesión en su cuenta y disfrute aprendiendo…</string>
     <string name="email_or_phone">Correo electrónico</string>
     <string name="password">Password</string>
+    <string name="bank_name">Name of Bank</string>
+    <string name="bank_account">Account Number</string>
+    <string name="branch_code">Branch Code</string>
+    <string name="choose_your_cv_file">Please select a file for your CV</string>
+    <string name="choose_your_proof_of_address_file">Please select a file for your proof of addres</string>
+    <string name="choose_your_bank_confirmation_file">Please upload bank account confirmation letter</string>
     <string name="terms_and_services">Al usar nuestros servicios, usted acepta nuestros Términos y Políticas</string>
     <string name="donnot_have_account">¿No tienes una cuenta?</string>
     <string name="forget_password">Contraseña olvidada</string>

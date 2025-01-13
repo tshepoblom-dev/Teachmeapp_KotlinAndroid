@@ -14,7 +14,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.RadioGroup
+import android.widget.RelativeLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.facebook.FacebookCallback
@@ -66,6 +68,9 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
     private var bankAccBytes: ByteArray? = null
     private var fileList:MutableList<MultipartBody.Part> = mutableListOf<MultipartBody.Part>()
 
+    private var mFilesSaved = false
+    private var mSettingsSaved = false
+
     private val mInputTextWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
         }
@@ -104,8 +109,10 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
         mBinding.signUpCreateAccountBtn.setOnClickListener(this)
         mBinding.signUpSignInBtn.setOnClickListener(this)
         mBinding.signUpEmailPhoneEdtx.addTextChangedListener(mInputTextWatcher)
-        mBinding.signUpPasswordEdtx.addTextChangedListener(mInputTextWatcher)
-        mBinding.signUpRetypePasswordEdtx.addTextChangedListener(mInputTextWatcher)
+        //mBinding.signUpPasswordEdtx.addTextChangedListener(mInputTextWatcher)
+        //mBinding.signUpRetypePasswordEdtx.addTextChangedListener(mInputTextWatcher)
+        mBinding.signUpPasswordtxt.addTextChangedListener(mInputTextWatcher)
+        mBinding.signUpRetypePasswordtxt.addTextChangedListener(mInputTextWatcher)
 
         // Set references for new RadioGroup for accountType
         mAccountTypeRadioGroup = mBinding.radioGroupAccountType
@@ -272,6 +279,11 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
         }
     }
 
+    fun uploadFiles(userId: Int){
+        if(fileList == null)
+            return
+        mPresenter.signUpFiles(userId, fileList);
+    }
     override fun onClick(v: View?) {
         super.onClick(v)
 
@@ -280,8 +292,10 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
                 if (!arePasswordFieldsEqual())
                     return
 
-                val password = mBinding.signUpPasswordEdtx.text.toString()
-                val passwordConfirmation = mBinding.signUpRetypePasswordEdtx.text.toString()
+                //val password = mBinding.signUpPasswordEdtx.text.toString()
+                val password = mBinding.signUpPasswordtxt.text.toString()
+                //val passwordConfirmation = mBinding.signUpRetypePasswordEdtx.text.toString()
+                val passwordConfirmation = mBinding.signUpRetypePasswordtxt.text.toString()
                 // Get selected account type from RadioGroup
                 val selectedAccountTypeId = mAccountTypeRadioGroup.checkedRadioButtonId
 
@@ -302,11 +316,9 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
                     signUp.institutionName = mBinding.institutionNameEdtx.text.toString() // New field
                     signUp.course = mBinding.courseEdtx.text.toString() // New field
 
-                    if(accountType == 1){
-                        mPresenter.signUp(signUp)
-                    }else if(accountType ==2){
-                        mPresenter.signUp(signUp, fileList)
-                    }
+                     mPresenter.signUp(signUp)
+                    showLoading()
+
                 } else {
                     val mobile = mBinding.signUpEmailPhoneEdtx.text.toString()
                     val signUp = MobileSignUp()
@@ -318,11 +330,9 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
                     signUp.idNumber = mBinding.idNumberEdtx.text.toString() // New field
                     signUp.institutionName = mBinding.institutionNameEdtx.text.toString() // New field
                     signUp.course = mBinding.courseEdtx.text.toString() // New field
-                    if(accountType == 1){
-                        mPresenter.signUp(signUp)
-                    }else if(accountType ==2){
-                        mPresenter.signUp(signUp, fileList)
-                    }
+
+                    mPresenter.signUp(signUp)
+                    showLoading()
                 }
             }
 
@@ -388,16 +398,23 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
 
     // Function to handle the actual file upload to server
     private fun handleFileUpload(fileUri: Uri?, fileType: String) {
-        // Implement your file upload logic here, possibly sending the fileUri to your backend server
-        //fileList = mutableListOf<MultipartBody.Part>()
         if (fileUri != null) {
             // TODO: Upload file to the server
             try {
-                // Use ContentResolver to open the InputStream from the URI
-                val inputStream = context?.contentResolver?.openInputStream(fileUri)
+                // Use ContentResolver to get the file extension
+                val contentResolver = context?.contentResolver
+                val mimeType = contentResolver?.getType(fileUri)
+                val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType)
+
+                // Use the original file extension if available, or default to the fileType
+                val fileExtension = extension ?: fileType
 
                 // Save the file content into a temporary file in the cache directory
-                val file = File(context?.cacheDir, "${System.currentTimeMillis()}_${fileType}")
+                val fileName = "${System.currentTimeMillis()}_${fileType}.$fileExtension"
+                val file = File(context?.cacheDir, fileName)
+
+                // Use ContentResolver to open the InputStream from the URI
+                val inputStream = context?.contentResolver?.openInputStream(fileUri)
                 val outputStream = FileOutputStream(file)
 
                 // Copy the InputStream data to the file
@@ -411,6 +428,7 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
 
                 // Add the file part to the list for uploading
                 fileList.add(part)
+
             }
             catch (e: FileNotFoundException) {
                 e.printStackTrace()
@@ -423,6 +441,22 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
             Log.e("FileUpload", "File URI is null for $fileType")
         }
     }
+    fun onFilesSaved(response: BaseResponse) {
+        if (response.isSuccessful) {
+            Log.d("FileUploads", "Files saved successfully")
+            mFilesSaved = true
+           // checkIfAllAreSaved(response)
+        } else {
+            mLoadingDialog?.dismiss()
+            ToastMaker.show(
+                requireContext(),
+                getString(R.string.error),
+                response.message,
+                ToastMaker.Type.ERROR
+            )
+        }
+    }
+
     private fun matchToVar(byteArray: ByteArray, fileType: String){
         when(fileType){
             "qualification" -> {
@@ -602,8 +636,10 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
 
     private fun enableDisableLoginBtn() {
         val username = mBinding.signUpEmailPhoneEdtx.text.toString()
-        val password = mBinding.signUpPasswordEdtx.text.toString()
-        val passwordRetype = mBinding.signUpRetypePasswordEdtx.text.toString()
+       // val password = mBinding.signUpPasswordEdtx.text.toString()
+       // val passwordRetype = mBinding.signUpRetypePasswordEdtx.text.toString()
+        val password = mBinding.signUpPasswordtxt.text.toString()
+        val passwordRetype = mBinding.signUpRetypePasswordtxt.text.toString()
         val loginBtn = mBinding.signUpCreateAccountBtn
         loginBtn.isEnabled = false
 
@@ -644,8 +680,10 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
 
 
     private fun arePasswordFieldsEqual(): Boolean {
-        val password = mBinding.signUpPasswordEdtx.text.toString()
-        val passwordRetype = mBinding.signUpRetypePasswordEdtx.text.toString()
+        //val password = mBinding.signUpPasswordEdtx.text.toString()
+        //val passwordRetype = mBinding.signUpRetypePasswordEdtx.text.toString()
+        val password = mBinding.signUpPasswordtxt.text.toString()
+        val passwordRetype = mBinding.signUpRetypePasswordtxt.text.toString()
         if (password.isNotEmpty() && passwordRetype.isNotEmpty() && password != passwordRetype) {
             ToastMaker.show(
                 requireContext(),
@@ -660,7 +698,32 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
         return true
     }
 
+    // Show the ProgressBar and overlay
+    fun showLoading() {
+        mBinding.progressBar.visibility = View.VISIBLE
+        mBinding.progressOverlay.visibility = View.VISIBLE
+        setButtons(false)
+    }
 
+    fun setButtons(enable: Boolean){
+        val buttons = listOf<RelativeLayout>(mBinding.uploadBankLetterBtn,
+            mBinding.uploadCvBtn,
+            mBinding.uploadIdDocumentBtn,
+            mBinding.uploadQualificationBtn,
+            mBinding.uploadProofOfAddressBtn)
+        buttons.forEach{button ->
+            button.isClickable = enable
+            button.isFocusable = enable
+            button.alpha = if (enable) 1.0f else 0.5f
+        }
+
+    }
+    // Hide the ProgressBar and overlay
+    fun hideLoading() {
+        mBinding.progressBar.visibility = View.GONE
+        mBinding.progressOverlay.visibility = View.GONE
+        setButtons(true)
+    }
     override fun onItemSelected(country: Country) {
         mCountry = country
         country.img?.let { mBinding.signUpCountryImg.setImageResource(it) }
@@ -672,6 +735,7 @@ class SignUpFrag : UserAuthFrag(), SelectionDialog.ItemSelection<Country>{
         emailSignUp: EmailSignUp? = null,
         mobileSignUp: MobileSignUp? = null
     ) {
+        hideLoading()
         if (data.isSuccessful || data.status == ResponseStatus.AUTH_GO_TO_STEP2.value()) {
             val frag = VerifyAccountFrag()
             val bundle = Bundle()
