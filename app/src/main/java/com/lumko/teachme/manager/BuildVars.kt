@@ -7,8 +7,8 @@ object BuildVars {
     @JvmField
     var LOGS_ENABLED = true
     const val API_KEY = "1234"
-    const val BASE_URL = "https://teachmeapp.africa/api/development/"
-    //const val BASE_URL = "https://213d-41-122-194-175.ngrok-free.app/api/development/"
+    //const val BASE_URL = "https://teachmeapp.africa/api/development/"
+    const val BASE_URL = "https://53e3-154-115-56-194.ngrok-free.app/api/development/"
 
     class DefaultLang(val value: String) {
         companion object {

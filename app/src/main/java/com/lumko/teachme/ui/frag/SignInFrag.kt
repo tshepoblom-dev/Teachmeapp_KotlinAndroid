@@ -91,7 +91,7 @@ class SignInFrag : UserAuthFrag() {
         super.onClick(v)
 
         when (v?.id) {
-            R.id.signInLoginBtn -> {
+             R.id.signInLoginBtn -> {
                 mLoadingDialog = LoadingDialog.instance
                 mLoadingDialog!!.show(childFragmentManager, null)
                 val username = mBinding.signInEmailPhoneEdtx.text.toString()
